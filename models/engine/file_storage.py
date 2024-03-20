@@ -10,7 +10,7 @@ class FileStorage:
 
     def delete(self, obj=None):
         """"Deletes an object int the object dictionary"""
-        if obj and obj in self.__objects:
+        if obj:
             k = "{}.{}".format(obj.__class__.__name__, obj.id)
             del self.__objects[k]
             FileStorage.save()
