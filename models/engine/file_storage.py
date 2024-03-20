@@ -7,9 +7,17 @@ class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
     __file_path = 'file.json'
     __objects = {}
+    def delete(self, obj=None):
+        """"Deletes an object int the object dictionary"""
+        if obj and obj in self.__objects:
+            k = "{}.{}".format(obj.__class__.__name__, obj.id)
+            del self.__objects[k]
+            FileStorage.save()
 
-    def all(self):
+    def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
+        if cls:         
+            return {k: v for k, v in self.__objects.items() if cls == k.split(".")[0]}
         return FileStorage.__objects
 
     def new(self, obj):
