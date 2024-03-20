@@ -133,8 +133,10 @@ class HBNBCommand(cmd.Cmd):
                     
                 elif "." in key_value[1]:
                     setattr(new_instance, key_value[0], float(key_value[1]))
-                else:
+                elif key_value[0]:
                     setattr(new_instance, key_value[0], int(key_value[1]))
+                else:
+                    pass
         storage.save()
         print(new_instance.id)
         storage.save()
