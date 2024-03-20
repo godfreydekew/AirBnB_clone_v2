@@ -13,13 +13,12 @@ class FileStorage:
         if obj:
             k = "{}.{}".format(obj.__class__.__name__, obj.id)
             del self.__objects[k]
-            FileStorage.save()
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
         if cls:
             return {k: v for k, v in self.__objects.items(
-                ) if cls in k.split(".")}
+                ) if cls.__name__ == k.split('.')[0]}
         return FileStorage.__objects
 
     def new(self, obj):
