@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ starts a Flask web application"""
 from flask import Flask
-from markupsafe import escape
 
 
 app = Flask(__name__)
@@ -26,7 +25,7 @@ def c(text):
         if '_' in text:
             text.replace('_', ' ')
 
-    return f"C {escape(text)}"
+    return f"C (text}"
 
 
 if __name__ == "__main__":
