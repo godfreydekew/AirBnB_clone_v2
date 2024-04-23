@@ -17,6 +17,7 @@ password = os.environ.get('HBNB_MYSQL_PWD')
 host = os.environ.get('HBNB_MYSQL_HOST')
 database = os.environ.get('HBNB_MYSQL_DB')
 
+
 class DBStorage:
     """Defines the database class"""
     __engine = None
@@ -56,5 +57,5 @@ class DBStorage:
     def close(self):
         """Close the session"""
         if self.__session is not None:
-            self.__session.remove()           
-            
+            self.__session.remove()
+            self.__session()

@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String
 from city import City
+import os
 
 
 class State(BaseModel, Base):
@@ -13,9 +14,10 @@ class State(BaseModel, Base):
 
     def cities(self):
         """Getter method for cities"""
-        from models import storage
-        cities_list = []
-        for city in storage.all(City).values():
-            if city.state_id == self.id:
-                cities_list.append(city)
-        return cities_list
+        if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+            from models import storage
+            cities_list = []
+            for city in storage.all(City).values():
+                if city.state_id == self.id:
+                    cities_list.append(city)
+            return cities_list
